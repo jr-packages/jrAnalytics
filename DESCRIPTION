@@ -20,4 +20,5 @@ Suggests:
     elasticnet,
     lars,
     jrNotes,
-    AppliedPredictiveModeling
+    AppliedPredictiveModeling, 
+    formatR
