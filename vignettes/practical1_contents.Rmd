@@ -1,0 +1,177 @@
+```{r, include = FALSE, cache = FALSE}
+library(knitr)
+# opts_knit$set(out.format = "latex")
+knit_theme$set(knit_theme$get("greyscale0"))
+
+options(replace.assign=FALSE,width=50)
+
+opts_chunk$set(fig.path='figure/graphics-', 
+               cache.path='cache/graphics-', 
+               fig.align='center', 
+               dev='pdf', fig.width=5, fig.height=5, 
+               fig.show='hold', cache=FALSE, par=TRUE)
+knit_hooks$set(crop=hook_pdfcrop)
+suppressPackageStartupMessages(library(dplyr))
+```
+
+## Simple Hypothesis Testing
+
+  Method A
+  ------- ------- ------- ------- ------- -------
+  78.64   79.01   79.57   79.52   80.71   79.95
+  78.50   79.10   81.98   80.09   80.29   80.22
+  ------- ------- ------- ------- ------- -------
+
+  Method B
+  ------- ------- ------- ------- ------- -------
+  81.92   81.12   82.47   82.86   82.89   82.45
+  82.51   81.11   83.07   82.77   82.38   83.14
+  ------- ------- ------- ------- ------- -------
+
+1.  We conducted an experiment and collected the data in the tables above. This
+ data set isn't paired.^[I intentionally didn't make the data
+    available for download so you would have to think about how to enter the
+    data. You could enter it either Excel and import or directly into R.]
+    a) Input the data into ^[Here I would suggest input the data into Excel and using `read_csv()`]. Combine the two data sets into a single data frame.
+
+    ```{r}
+    ##Data for question 1
+    ## Easier using Excel and export as CSV
+    x = c(78.64,79.01, 79.57, 79.52, 80.71, 79.95, 78.50,
+      79.10, 81.98, 80.09, 80.29, 80.22)
+    y = c(81.92, 81.12, 82.47, 82.86, 82.89, 82.45,
+         82.51, 81.11, 83.07, 82.77, 82.38, 83.14)
+    dd = data.frame(x, y)
+    
+    ```
+    
+    ```{r, echo = FALSE}
+    d1 = data.frame(value = x)
+    d2 = data.frame(value = y)
+    ```
+    
+    ```{r, eval=FALSE}
+    ## Suppose you have two separate data files. Here is some code that will help ## you combine them. First we read in the separate files:
+    d1 = read.csv("Method1.csv")
+    d2 = read.csv("Method2.csv")
+    ```
+    
+    ```{r}
+    ## In order to combine the data frames,
+    ## they must have the same column names:
+    head(d1, 2)
+    head(d2, 2)
+    ```
+    
+    ```{r}
+    ## We combine data frames using rbind (row bind)
+    d = rbind(d1, d2)
+    ```
+    
+    ```{r}
+    ## Finally we create a new column to indicate the Method
+    ## rep is the replicate function. See ?rep
+    d$Method = rep(1:2, each=12)
+    head(d, 2)
+    ```
+
+    b) Exploratory data analysis. Construct boxplots, histograms and q-q plots for both data sets. Work
+    out the means and standard deviations. Before carrying out any statistical
+    test, what do you think your conclusions will be? Do you think the variances
+    are roughly equal? Do you think the data conforms to a normal
+    distribution.
+    c) Carry out a two sample $t$-test. Assume that the variances are unequal.
+
+    ```{r}
+    t.test(value ~ Method, data=d, var.equal=FALSE)
+    ```
+
+    How does this answer compare with your intuition?
+
+    d) Carry out a two sample $t$-test, assuming equal variances.
+
+    ```{r}
+    t.test(value ~ Method, data=d, var.equal=TRUE)
+    ```
+
+2. Suppose we are interested whether successful business
+  executives are affected by their zodiac sign. We have collected 4265 samples
+  and obtained the following data
+  
+    ```{r, echo = TRUE, results = "show"}
+    data(zodiac, package = "jrAnalytics")
+    head(zodiac)
+    ```
+    
+    a) Carry out a $\chi^2$ goodness of fit test on the zodiac data. Are business executives distributed uniformly across zodiac signs?
+
+    ```{r}
+    x = zodiac$count
+    m = chisq.test(x)
+    ##Since p > 0.05 we can't accept the alternative hypothesis.
+    ##However, the question is worded as though we can "prove" the Null
+    ##hypotheis, which we obviously can't do.
+    ```
+
+
+    b) What are the expected values for each zodiac sign?
+
+    ```{r}
+    ##expected values
+    (expected = m[["expected"]])
+    ```
+
+
+    c) The formula for calculating the residuals ^[These residuals are
+    called Pearson residuals. Hint: use `str(m)` to extract the residuals.] is given by
+
+    $$
+    \frac{\text{observed} - \text{expected}}{\sqrt{\text{expected}}}
+    $$
+
+    Which residuals are large?
+
+    ```{r}
+    ##Residuals
+    m[["residuals"]]
+    ```
+
+## One way ANOVA tables
+
+1. A pilot study was developed to investigate whether music
+influenced exam scores. Three groups of students listened to 10 minutes of
+Mozart, silence or heavy metal before an IQ test. The results of the IQ test
+are as follows
+
+  ----------- --- --- --- --- --- --- ---
+  Mozart      109 114 108 123 115 108 114
+  Silence     113 114 113 108 119 112 110
+  Heavy Metal 103  94 114 107 107 113 107
+  ----------- --- --- --- --- --- --- ---
+  
+  a) Construct a one-way ANOVA table. Are there differences between treatment groups?
+
+    ```{r}
+    x1 = c(109, 114, 108, 123, 115, 108, 114)
+    x2 = c(113, 114, 113, 108, 119, 112, 110)
+    x3 = c(103, 94, 114, 107, 107, 113, 107)
+    dd = data.frame(values = c(x1, x2, x3), type = rep(c("M", "S", "H"), each=7))
+    m = aov(values ~ type, dd)
+    summary(m)
+    ##The p value is around 0.056.
+    ##This suggests a difference may exist.
+    ```
+
+   b) Check the standardised residuals of your model.
+
+    ```{r fig.keep="none"}
+    plot(fitted.values(m), rstandard(m))
+    ## Residual plot looks OK
+    
+    ```
+
+   c) Perform a multiple comparison test to determine where the difference lies.
+    
+    ```{r}
+    TukeyHSD(m)
+    ```

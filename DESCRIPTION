@@ -1,0 +1,23 @@
+Package: jrAnalytics
+Type: Package
+Title: Practicals and datasets for Jumping Rivers courses
+Version: 0.1.0
+Authors@R: c(person("Jamie", "Owen", email="jamie@jumpingrivers.com", role = c("aut", "cre")),
+              person("Colin", "Gillespie", email="colin@jumpingrivers.com", role = "aut"))
+Description: Practicals and data sets for the introduction to analytics course run by Jumping Rivers.
+URL: https://www.jumpingrivers.com
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+VignetteBuilder: knitr
+Depends: R (>= 3.2.0)
+Suggests: 
+    knitr,
+    tufte,
+    caret,
+    dplyr, 
+    elasticnet,
+    lars,
+    jrNotes,
+    AppliedPredictiveModeling
