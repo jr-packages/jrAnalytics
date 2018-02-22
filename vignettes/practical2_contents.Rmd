@@ -181,6 +181,7 @@ The **jrAnalytics** package contains a `plot3d()` function to help with viewing 
 
 ```{r,echo=TRUE,fig.keep="none"}
 ## points = TRUE to also show the points
+library(jrAnalytics)
 plot3d(m3,cars2010$EngDispl, cars2010$NumCyl,
        cars2010$FE, points = FALSE)
 ```
