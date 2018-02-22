@@ -12,7 +12,7 @@ LazyData: true
 RoxygenNote: 6.0.1
 VignetteBuilder: knitr
 Depends: R (>= 3.2.0)
-Suggests: 
+Suggests:
     knitr,
     tufte,
     caret,
@@ -22,3 +22,4 @@ Suggests:
     jrNotes,
     AppliedPredictiveModeling, 
     formatR
+Remotes: jr-packages/jrNotes
