@@ -32,22 +32,22 @@ boundary_plot = function(model, x, y, z,
   # make the predictions
   predictions = predict(model, grid, type = "prob")
   # turn the predictions into a matrix for a contour plot
-  predmat = matrix(predictions[,2], nrow=100)
-  contour(x_seq, y_seq, predmat,  xlab=xlab, ylab=ylab,
-          levels=levels, lwd=lwd,...)
+  predmat = matrix(predictions[, 2], nrow = 100)
+  contour(x_seq, y_seq, predmat,  xlab = xlab, ylab = ylab,
+          levels = levels, lwd = lwd, ...)
 
   # the background points indicating prediction
-  points(grid, col = c("red","blue")[predict(model,grid)],
+  points(grid, col = c("red", "blue")[predict(model, grid)],
          cex = 0.2)
   # there are few unique combinations of prices,
   # jitter can help see the points
   # points of prices coloured by purchased brand
-  if(jitter){
+  if (jitter){
     x = jitter(x); y = jitter(y)
   }
   points(x,
          y,
-         col = c("red","blue")[z],
+         col = c("red", "blue")[z],
          pch = 19, cex = 0.6)
 
 }
