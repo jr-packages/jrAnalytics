@@ -23,5 +23,6 @@ Suggests:
     AppliedPredictiveModeling, 
     formatR,
     testthat,
-    lintr
+    lintr,
+    gert
 Remotes: jr-packages/jrNotes
