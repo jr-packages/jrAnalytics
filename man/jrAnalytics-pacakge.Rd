@@ -4,7 +4,6 @@
 \name{jrAnalytics-pacakge}
 \alias{jrAnalytics-pacakge}
 \alias{jrAnalytics}
-\alias{jrAnalytics-pacakge-package}
 \title{Introduction to analytics in R by Jumping Rivers}
 \description{
 Functions and data sets used in R courses
