@@ -4,9 +4,18 @@
 \alias{boundary_plot}
 \title{Convience function for creating boundary plots}
 \usage{
-boundary_plot(model, x, y, z, xlab = all.vars(formula(model))[2],
-  ylab = all.vars(formula(model))[3], levels = 0.5, lwd = 2,
-  jitter = TRUE, ...)
+boundary_plot(
+  model,
+  x,
+  y,
+  z,
+  xlab = all.vars(formula(model))[2],
+  ylab = all.vars(formula(model))[3],
+  levels = 0.5,
+  lwd = 2,
+  jitter = TRUE,
+  ...
+)
 }
 \arguments{
 \item{model}{A caret classification model}
