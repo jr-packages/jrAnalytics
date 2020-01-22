@@ -25,7 +25,7 @@ boundary_plot = function(model, x, y, z,
   x_seq = seq(x_range[1], x_range[2], length.out = 100)
   y_seq = seq(y_range[1], y_range[2], length.out = 100)
 
-  grid = expand.grid( x_seq, y_seq)
+  grid = expand.grid(x_seq, y_seq)
   names = all.vars(formula(model))
   colnames(grid) = names[2:3]
 
@@ -42,7 +42,7 @@ boundary_plot = function(model, x, y, z,
   # there are few unique combinations of prices,
   # jitter can help see the points
   # points of prices coloured by purchased brand
-  if (jitter){
+  if (jitter) {
     x = jitter(x); y = jitter(y)
   }
   points(x,

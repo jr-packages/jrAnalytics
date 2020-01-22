@@ -3,14 +3,14 @@ library(knitr)
 # opts_knit$set(out.format = "latex")
 knit_theme$set(knit_theme$get("greyscale0"))
 
-options(replace.assign=FALSE,width=50)
+options(replace.assign = FALSE, width = 50)
 
-opts_chunk$set(fig.path='figure/graphics-', 
-               cache.path='cache/graphics-', 
-               fig.align='center', 
-               dev='pdf', fig.width=5, fig.height=5, 
-               fig.show='hold', cache=FALSE, par=TRUE)
-knit_hooks$set(crop=hook_pdfcrop)
+opts_chunk$set(fig.path = "figure/graphics-", 
+               cache.path = "cache/graphics-", 
+               fig.align = "center", 
+               dev = "pdf", fig.width = 5, fig.height = 5, 
+               fig.show = "hold", cache = FALSE, par = TRUE)
+knit_hooks$set(crop = hook_pdfcrop)
 suppressPackageStartupMessages(library(dplyr))
 ```
 
@@ -37,7 +37,7 @@ suppressPackageStartupMessages(library(dplyr))
     ```{r}
     ##Data for question 1
     ## Easier using Excel and export as CSV
-    x = c(78.64,79.01, 79.57, 79.52, 80.71, 79.95, 78.50,
+    x = c(78.64, 79.01, 79.57, 79.52, 80.71, 79.95, 78.50,
       79.10, 81.98, 80.09, 80.29, 80.22)
     y = c(81.92, 81.12, 82.47, 82.86, 82.89, 82.45,
          82.51, 81.11, 83.07, 82.77, 82.38, 83.14)
@@ -51,7 +51,8 @@ suppressPackageStartupMessages(library(dplyr))
     ```
     
     ```{r, eval=FALSE}
-    ## Suppose you have two separate data files. Here is some code that will help ## you combine them. First we read in the separate files:
+    ## Suppose you have two separate data files. Here is some code that
+    ## will help you combine them. First we read in the separate files:
     d1 = read.csv("Method1.csv")
     d2 = read.csv("Method2.csv")
     ```
@@ -71,7 +72,7 @@ suppressPackageStartupMessages(library(dplyr))
     ```{r}
     ## Finally we create a new column to indicate the Method
     ## rep is the replicate function. See ?rep
-    d$Method = rep(1:2, each=12)
+    d$Method = rep(1:2, each = 12)
     head(d, 2)
     ```
 
@@ -83,7 +84,7 @@ suppressPackageStartupMessages(library(dplyr))
     c) Carry out a two sample $t$-test. Assume that the variances are unequal.
 
     ```{r}
-    t.test(value ~ Method, data=d, var.equal=FALSE)
+    t.test(value ~ Method, data = d, var.equal = FALSE)
     ```
 
     How does this answer compare with your intuition?
@@ -91,7 +92,7 @@ suppressPackageStartupMessages(library(dplyr))
     d) Carry out a two sample $t$-test, assuming equal variances.
 
     ```{r}
-    t.test(value ~ Method, data=d, var.equal=TRUE)
+    t.test(value ~ Method, data = d, var.equal = TRUE)
     ```
 
 2. Suppose we are interested whether successful business
@@ -155,7 +156,9 @@ are as follows
     x1 = c(109, 114, 108, 123, 115, 108, 114)
     x2 = c(113, 114, 113, 108, 119, 112, 110)
     x3 = c(103, 94, 114, 107, 107, 113, 107)
-    dd = data.frame(values = c(x1, x2, x3), type = rep(c("M", "S", "H"), each=7))
+    dd = data.frame(values = c(x1, x2, x3),
+                    type = rep(c("M", "S", "H"),
+                    each = 7))
     m = aov(values ~ type, dd)
     summary(m)
     ##The p value is around 0.056.

@@ -9,11 +9,11 @@
 https://bmdatablog.files.wordpress.com/2016/04/chopsticks.pdf
 }
 \description{
-A few researchers set out to determine the optimal length of chopsticks for children and adults.
-They came up with a measure of how effective a pair of chopsticks performed, called the "Food Pinching
-Performance."
-The "Food Pinching Performance" was determined by counting the number of peanuts picked
-and placed in a cup (PPPC).
+A few researchers set out to determine the optimal length
+of chopsticks for children and adults. They came up with a measure of
+how effective a pair of chopsticks performed, called the "Food Pinching
+Performance". The "Food Pinching Performance" was determined by
+counting the number of peanuts picked and placed in a cup (PPPC).
 
 The idea was taken from http://blog.yhat.com/posts/7-funny-datasets.html
 }
