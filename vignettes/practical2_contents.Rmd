@@ -1,22 +1,22 @@
 ```{r, include=FALSE}
 library(knitr)
 library(jrNotes)
-opts_chunk$set(self.contained=FALSE, tidy = TRUE,
+opts_chunk$set(self.contained = FALSE, tidy = TRUE,
               cache = TRUE, size = "small", message = FALSE,
               # fig.path=paste0('knitr_figure/', fname),
                # cache.path=paste0('knitr_cache/',fname),
-               fig.align='center',
-               dev='pdf', fig.width=5, fig.height=5)
+               fig.align = "center",
+               dev = "pdf", fig.width = 5, fig.height = 5)
 
-knit_hooks$set(par=function(before, options, envir){
-    if (before && options$fig.show!='none') {
-        par(mar=c(3,3,2,1),cex.lab=.95,cex.axis=.9,
-            mgp=c(2,.7,0),tcl=-.01, las=1)
-}}, crop=hook_pdfcrop)
+knit_hooks$set(par = function(before, options, envir) {
+    if (before && options$fig.show != "none") {
+        par(mar = c(3, 3, 2, 1), cex.lab = .95, cex.axis = .9,
+            mgp = c(2, .7, 0), tcl = -.01, las = 1)
+}}, crop = hook_pdfcrop)
 
 
 #opts_knit$set(out.format = "latex")
-options(width=56)
+options(width = 56)
 #dir.create("graphics",showWarnings = FALSE)
 ```
 
@@ -58,10 +58,10 @@ each predictor
 
 
 ```{r fig1_1, fig.cap="Plotting the response against some of the predictor variables in the `cars2010` data set.", fig.width=9,fig.height=4.5, echo = FALSE, fig.pos="t"}
-set_nice_par(mfrow = c(1,2))
+set_nice_par(mfrow = c(1, 2))
 set_palette(1)
-plot(FE ~ EngDispl + NumCyl, data = cars2010, pch=21, bg=1,
-     ylim=c(0, 75), cex=0.7)
+plot(FE ~ EngDispl + NumCyl, data = cars2010, pch = 21, bg = 1,
+     ylim = c(0, 75), cex = 0.7)
 ```
 
   1. Create a simple linear model fit of `FE` against `EngDispl` using the `train()` function^[Hint: use the `train()` function with the `lm` method.]. Call your model `m1`. 
@@ -80,7 +80,7 @@ plot(FE ~ EngDispl + NumCyl, data = cars2010, pch=21, bg=1,
   1. We can add the lines showing where we expect the standardised residuals to fall to aid graphical inspection
 
     ```{r, echo = TRUE,eval=FALSE}
-    abline(h = c(-2,0,2), col = 2:3, lty = 2:1)
+    abline(h = c(-2, 0, 2), col = 2:3, lty = 2:1)
     ```
 
 
@@ -88,8 +88,8 @@ plot(FE ~ EngDispl + NumCyl, data = cars2010, pch=21, bg=1,
   
     ```{r, tidy=TRUE}
     # There definitely appears to be some trend in the residuals.
-    # The curved shape indicates that we potentially require some transformation of variables.
-    # A squared term might help.
+    # The curved shape indicates that we potentially require some
+    # transformation of variables. A squared term might help.
     ```
   
 
@@ -97,24 +97,25 @@ plot(FE ~ EngDispl + NumCyl, data = cars2010, pch=21, bg=1,
 set_nice_par()
 set_palette(1)
 plot(cars2010$FE, fitted.values(m1$finalModel),
-     xlab="FE", ylab="Fitted values",
-     xlim=c(10, 75), ylim=c(10, 75) )
-abline(0, 1, col=3, lty=2)
+     xlab = "FE", ylab = "Fitted values",
+     xlim = c(10, 75), ylim = c(10, 75))
+abline(0, 1, col = 3, lty = 2)
 ```
 
   1. Plot the fitted values vs the observed values
 
     ```{r, fig.keep='none'}
     plot(cars2010$FE, fitted.values(m1$finalModel),
-         xlab="FE", ylab="Fitted values",
-         xlim=c(10, 75), ylim=c(10, 75) )
+         xlab = "FE", ylab = "Fitted values",
+         xlim = c(10, 75), ylim = c(10, 75))
     ```
 
   1. What does this plot tell us about the predictive performance of this model across the range of the response?
 
     ```{r}
-    #We seem to slightly over estimate more often than not in the 25-35 range.
-    #For the upper end of the range we seem to always under estimate the true values.
+    # We seem to slightly over estimate more often than not in the 25-35
+    # range. For the upper end of the range we seem to always under
+    # estimate the true values.
     ```
 
 
@@ -123,16 +124,16 @@ abline(0, 1, col=3, lty=2)
     ```{r, fig.keep='none'}
     qqnorm(rstd); qqline(rstd)
     plot(cars2010$EngDispl, rstd)
-    abline(h = c(-2,0,2), col=  2:3, lty= 1:2)
+    abline(h = c(-2, 0, 2), col =  2:3, lty = 1:2)
     ```
 
 
   1. Are the modelling assumptions justified?
 
     ```{r}
-    # We are struggling to justify the assumption of normality in the residuals here,
-    # all of the diagnostics indicate patterns remain in the residuals that are currently
-    # unexplained by the model.    
+    # We are struggling to justify the assumption of normality in the
+    # residuals here, all of the diagnostics indicate patterns remain in
+    # the residuals that are currently unexplained by the model.    
     ```
 
 
@@ -145,8 +146,9 @@ abline(0, 1, col=3, lty=2)
   1. Do you think adding a quadratic term will improve the model fit?
 
     ```{r, tidy = TRUE}
-    # We are struggling to justify the assumption of normality in the residuals here,
-    # all of the diagnostics indicate patterns remain in the residuals that are currently unexplained by the model
+    # We are struggling to justify the assumption of normality in the
+    # residuals here, all of the diagnostics indicate patterns remain in
+    # the residuals that are currently unexplained by the model 
     # so potentially a parabola will help 
     ```
 
@@ -160,7 +162,8 @@ abline(0, 1, col=3, lty=2)
   1. Assess the modelling assumptions for this new model. How do the two models compare?
 
     ```{r, tidy=TRUE}
-    # The residual diagnostics indicate a better fit now that the quadratic term has been included.
+    # The residual diagnostics indicate a better fit now that the quadratic
+    # term has been included.
     ```
 
 
@@ -182,7 +185,7 @@ The **jrAnalytics** package contains a `plot3d()` function to help with viewing 
 ```{r,echo=TRUE,fig.keep="none"}
 ## points = TRUE to also show the points
 library(jrAnalytics)
-plot3d(m3,cars2010$EngDispl, cars2010$NumCyl,
+plot3d(m3, cars2010$EngDispl, cars2010$NumCyl,
        cars2010$FE, points = FALSE)
 ```
 
@@ -190,15 +193,14 @@ We can also examine just the data interactively, via
 
 ```{r, eval = FALSE, echo = TRUE}
 threejs::scatterplot3js(cars2010$EngDispl, cars2010$NumCyl,
-                        cars2010$FE, size=0.5)
+                        cars2010$FE, size = 0.5)
 ```
 
   1. Try fitting other variations of this model using these two predictors. For example, try adding polynomial and interaction terms
 
     ```{r}
-    m4 = train(FE~EngDispl*NumCyl + I(NumCyl^5),
+    m4 = train(FE~EngDispl * NumCyl + I(NumCyl^5),
                data = cars2010, method = "lm")
-    
     ```
 
   1. How is prediction affected in each case? Don't forget to examine residuals, R squared values and the predictive surface.

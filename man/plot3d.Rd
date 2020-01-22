@@ -15,9 +15,11 @@ plot3d(model, xvar, yvar, zvar, phi = 30, theta = 30, points = FALSE, ...)
 
 \item{zvar}{The response variable being predicted}
 
-\item{phi}{Angle defining the viewing direction.  phi give the colatitude direction. Default 30.}
+\item{phi}{Angle defining the viewing direction. phi give the
+colatitude direction. Default 30.}
 
-\item{theta}{Angles defining the viewing direction. theta gives the azimuthal direction. Default 30.}
+\item{theta}{Angles defining the viewing direction. theta gives the
+azimuthal direction. Default 30.}
 
 \item{points}{A logical argument if TRUE the resultant plot will also
 show the observed points around the fitted surface with red points

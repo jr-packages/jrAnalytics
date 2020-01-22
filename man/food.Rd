@@ -5,7 +5,8 @@
 \alias{food}
 \title{European protein consumption}
 \source{
-https://rstudio-pubs-static.s3.amazonaws.com/33876_1d7794d9a86647ca90c4f182df93f0e8.html
+https://rstudio-pubs-static.s3.amazonaws.com/
+33876_1d7794d9a86647ca90c4f182df93f0e8.html
 }
 \description{
 Datat on protein consumpution.

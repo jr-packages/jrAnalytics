@@ -6,5 +6,6 @@
 \title{Zodiac signs of CEOs}
 \description{
 Numbers of successful business personal by zodiac sign.
-We are interested in whether there is any association between star sign and success.
+We are interested in whether there is any association between star
+sign and success.
 }

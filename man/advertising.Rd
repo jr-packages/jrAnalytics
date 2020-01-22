@@ -5,6 +5,7 @@
 \alias{advertising}
 \title{Advertising data for examples}
 \description{
-Advertising expenditure in three different media for some product with corresponding sales of this product.
+Advertising expenditure in three different media for
+some product with corresponding sales of this product.
 Fabricated data for the purpose of examples in the analytics course.
 }

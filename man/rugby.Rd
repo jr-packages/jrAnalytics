@@ -4,8 +4,10 @@
 \alias{rugby}
 \title{Rugby players sizes}
 \source{
-http://www.bbc.co.uk/blogs/tomfordyce/2012/03/land_of_the_rugby_giants.html
+http://www.bbc.co.uk/blogs/tomfordyce/2012/03/
+land_of_the_rugby_giants.html
 }
 \description{
-Sizes of the England XV to the equivalent week in the Five/Six Nations of in 1962, 1972, ..., 2012.
+Sizes of the England XV to the equivalent
+week in the Five/Six Nations of in 1962, 1972, ..., 2012.
 }
